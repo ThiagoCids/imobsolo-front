@@ -1,34 +1,22 @@
 import React from 'react'
-import Sidebar from './components/Sidebar'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Card from './components/Card'
-import Table from './components/Table' // <--- Importou a tabela
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+// Importando as nossas páginas
+import Login from './pages/Login'
+import Dashboard from './pages/Dashboard'
 
 function App() {
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
-      <Sidebar />
-      
-      <main style={{ marginLeft: '250px', padding: '30px', width: '100%', display: 'flex', flexDirection: 'column' }}>
-        <Header />
-
-        <div className="content" style={{ flex: 1 }}>
-           {/* Cards */}
-           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginBottom: '30px' }}>
-              <Card titulo="Imóveis Cadastrados" valor="124" icone="🏠" />
-              <Card titulo="Clientes Ativos" valor="8" icone="👥" />
-              <Card titulo="Faturamento Mensal" valor="R$ 12.500" icone="💰" />
-           </div>
-
-           {/* AQUI ESTÁ A NOSSA TABELA */}
-           <Table />
-           
-        </div>
-
-        <Footer />
-      </main>
-    </div>
+    <BrowserRouter>
+      {/* O Routes é como se fosse um painel de escolhas */}
+      <Routes>
+        {/* Se o link for "/" (raiz), mostre o Login */}
+        <Route path="/" element={<Login />} />
+        
+        {/* Se o link for "/dashboard", mostre o Dashboard */}
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
