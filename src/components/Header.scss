@@ -1,0 +1,52 @@
+/* src/components/Header.scss */
+
+.header {
+  display: flex;
+  justify-content: space-between; /* Texto na esquerda, perfil na direita */
+  align-items: center;
+  background-color: transparent; /* Vamos deixar transparente para ficar moderno */
+  margin-bottom: 30px;
+  
+  .header-title {
+    h1 {
+      font-size: 24px;
+      color: var(--cor-texto-escuro);
+    }
+    p {
+      color: var(--cor-texto-cinza);
+      font-size: 14px;
+      margin-top: 5px;
+    }
+  }
+
+  .header-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--cor-branca);
+    padding: 10px 20px;
+    border-radius: 30px; /* Borda bem redonda (Pill shape) */
+    box-shadow: 0px 5px 14px rgba(0, 0, 0, 0.05); /* Sombra leve */
+    
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%; /* Foto redonda */
+      object-fit: cover;
+    }
+
+    .profile-info {
+      text-align: right;
+      
+      strong {
+        display: block;
+        font-size: 14px;
+        color: var(--cor-texto-escuro);
+      }
+      span {
+        font-size: 12px;
+        color: var(--cor-texto-cinza);
+      }
+    }
+  }
+}

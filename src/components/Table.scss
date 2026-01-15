@@ -1,0 +1,45 @@
+/* src/components/Table.scss */
+
+.table-container {
+  background-color: var(--cor-branca);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 18px 40px rgba(112, 144, 176, 0.12);
+
+  h3 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: var(--cor-texto-escuro);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse; /* Tira os espaços entre as células */
+
+    th {
+      text-align: left;
+      color: var(--cor-texto-cinza);
+      font-size: 14px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #E9EDF7;
+    }
+
+    td {
+      padding: 15px 0;
+      color: var(--cor-texto-escuro);
+      font-size: 14px;
+      font-weight: 600;
+      border-bottom: 1px solid #E9EDF7;
+
+      /* Estilo para a coluna de Status */
+      &.status-novo { color: var(--cor-primaria); }
+      &.status-negociacao { color: #FFB547; }
+      &.status-vendido { color: #05CD99; }
+    }
+    
+    /* Remove a borda da última linha para ficar bonito */
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+}

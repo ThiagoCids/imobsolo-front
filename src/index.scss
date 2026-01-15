@@ -1,0 +1,29 @@
+/* src/index.scss */
+
+/* Definindo as variáveis de cores do ImobSolo */
+:root {
+  --cor-fundo: #F4F7FE;       /* Aquele cinza azulado moderno de dashboards */
+  --cor-primaria: #4318FF;    /* O Azul vibrante do nosso logo */
+  --cor-texto-escuro: #2B3674;/* Azul marinho para títulos */
+  --cor-texto-cinza: #A3AED0; /* Cinza para textos secundários */
+  --cor-branca: #FFFFFF;
+}
+
+/* Resetando as margens padrão do navegador */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--cor-fundo);
+  font-family: 'DM Sans', sans-serif; /* Vamos usar uma fonte moderna depois */
+  color: var(--cor-texto-escuro);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--cor-texto-escuro);
+  font-weight: 700;
+}

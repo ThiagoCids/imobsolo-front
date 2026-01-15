@@ -1,0 +1,45 @@
+/* src/components/Sidebar.scss */
+
+.sidebar {
+  width: 250px;            /* Largura fixa da barra */
+  height: 100vh;           /* Altura total da tela */
+  background-color: var(--cor-branca);
+  position: fixed;         /* Preso na esquerda */
+  left: 0;
+  top: 0;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(0,0,0,0.05); /* Borda sutil */
+
+  /* --- Bloco do Logo (Aninhado dentro da sidebar) --- */
+  .logo {
+    display: flex;
+    justify-content: center; /* Centraliza a imagem */
+    margin-bottom: 50px;     /* Empurra o menu para baixo */
+    
+    img {
+      width: 140px;          /* Controla o tamanho do logo aqui */
+      height: auto;          /* Mantém a proporção correta */
+    }
+  }
+
+  /* --- Bloco do Menu (Também aninhado dentro da sidebar) --- */
+  nav ul {
+    list-style: none; /* Remove as bolinhas da lista */
+    
+    li {
+      padding: 15px 0;
+      color: var(--cor-texto-cinza);
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+
+      /* Efeito ao passar o mouse (Hover) */
+      &:hover {
+        color: var(--cor-primaria);
+        font-weight: bold;
+      }
+    }
+  }
+}

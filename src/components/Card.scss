@@ -1,0 +1,40 @@
+/* src/components/Card.scss */
+.card {
+  background-color: var(--cor-branca);
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0px 18px 40px rgba(112, 144, 176, 0.12);
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #F4F7FE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    color: var(--cor-primaria);
+  }
+
+  .card-info {
+    h4 {
+      font-size: 14px;
+      color: var(--cor-texto-cinza);
+      margin-bottom: 5px;
+    }
+    h3 {
+      font-size: 24px;
+      color: var(--cor-texto-escuro);
+      font-weight: 700;
+    }
+  }
+}
