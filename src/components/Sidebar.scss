@@ -1,43 +1,45 @@
 .sidebar {
   width: 250px;
-  background-color: var(--white); // Fundo branco
+  background-color: var(--white);
   height: 100vh;
-  padding: 30px 20px;
-  border-right: 1px solid #F0F0F0; // Borda bem suava
+  padding: 30px 0;
+  border-right: 1px solid #F0F0F0;
   display: flex;
   flex-direction: column;
 
   .logo-area {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 50px;
-    padding-left: 10px;
+    padding: 0 30px; 
+    margin-bottom: 40px;
 
-    .logo-icon { font-size: 24px; }
-    h2 { color: var(--primary-blue); font-weight: 800; font-size: 20px; }
+    .logo-img {
+      // AUMENTEI PARA 100px (Era 75px)
+      height: 100px;    
+      width: auto;
+      object-fit: contain; 
+    }
   }
 
+  // ... (o resto do código do menu continua igual)
   nav ul {
     list-style: none;
-    
+    padding: 0 15px; 
     li {
-      margin-bottom: 10px;
-      
+      margin-bottom: 5px;
       a {
         display: block;
-        padding: 12px 20px;
-        border-radius: 12px; // Cantos arredondados
-        color: var(--gray-text); // Cinza padrão
+        padding: 12px 15px; 
+        border-radius: 10px;
+        color: var(--gray-text);
         font-weight: 500;
         font-size: 15px;
-        text-decoration: none;
         transition: all 0.2s;
-
         &:hover {
           color: var(--primary-blue);
-          background-color: transparent; // Na imagem parece não ter fundo no hover, só cor
-          font-weight: 700; // Fica negrito no hover
+          font-weight: 700;
+          background-color: #f4f7fe; 
+          padding-left: 20px;
         }
       }
     }

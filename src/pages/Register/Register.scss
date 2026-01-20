@@ -1,0 +1,126 @@
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color);
+  padding: 20px;
+
+  .register-card {
+    background-color: var(--white);
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+
+    .logo-area {
+      margin-bottom: 20px;
+      img { height: 60px; width: auto; }
+    }
+
+    // --- SUCESSO PROFISSIONAL ---
+    .success-message {
+      padding: 50px 0;
+      animation: fadeIn 0.5s ease;
+
+      .icon-success {
+        font-size: 80px; // Tamanho grande
+        color: var(--success); // Verde oficial (#05CD99)
+        margin-bottom: 25px;
+        display: flex;
+        justify-content: center;
+        
+        // Pequena animação de "pulso" ao aparecer
+        animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      h2 { 
+        color: var(--dark-blue); 
+        margin-bottom: 10px; 
+        font-size: 28px;
+      }
+      p { color: var(--gray-text); font-size: 16px; }
+      
+      .redirect-text {
+        font-size: 14px;
+        margin-top: 20px;
+        font-weight: 500;
+        opacity: 0.7;
+      }
+    }
+    // ----------------------------
+
+    .header-text {
+      margin-bottom: 25px;
+      h2 { color: var(--dark-blue); font-size: 24px; font-weight: 700; margin-bottom: 5px; }
+      p { color: var(--gray-text); font-size: 14px; }
+    }
+
+    form {
+      text-align: left;
+      
+      .form-row {
+        display: flex;
+        gap: 20px;
+        .input-group { flex: 1; }
+      }
+
+      .input-group {
+        margin-bottom: 18px;
+        label {
+          display: block; font-size: 14px; font-weight: 600;
+          color: var(--dark-blue); margin-bottom: 8px;
+        }
+        input {
+          width: 100%; padding: 12px 15px;
+          border: 1px solid #E0E5F2; border-radius: 12px;
+          font-size: 15px; outline: none; transition: all 0.2s;
+          color: var(--dark-blue); background-color: #fff;
+          &::placeholder { color: #A3AED0; }
+          &:focus { border-color: var(--primary-blue); box-shadow: 0 0 0 3px rgba(67, 24, 255, 0.1); }
+        }
+        &.error {
+          input { border-color: var(--danger); }
+          .msg-error {
+            color: var(--danger); font-size: 12px; margin-top: 5px;
+            display: flex; align-items: center;
+            &::before { content: '⚠️'; margin-right: 5px; font-size: 10px; }
+          }
+        }
+      }
+
+      .btn-primary {
+        width: 100%; background-color: var(--primary-blue); color: white;
+        padding: 15px; border-radius: 12px; font-weight: 700; font-size: 16px;
+        margin-top: 10px; cursor: pointer;
+        transition: transform 0.2s, background-color 0.2s;
+        &:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+      }
+    }
+
+    .footer-links {
+      margin-top: 25px; font-size: 14px; color: var(--gray-text);
+      a { color: var(--primary-blue); font-weight: 700; margin-left: 5px; &:hover { text-decoration: underline; } }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .register-card {
+      padding: 30px 20px;
+      form .form-row { flex-direction: column; gap: 0; }
+    }
+  }
+
+  // Animações
+  @keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    80% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}

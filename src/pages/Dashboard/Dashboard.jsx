@@ -7,26 +7,36 @@ import Table from '../../components/Table';
 import './Dashboard.scss';
 
 const Dashboard = () => {
+  // --- SIMULAÇÃO DE DADOS DO USUÁRIO (Vindo do Banco de Dados) ---
+  const usuarioLogado = {
+    nome: "Thiago Henrique Domingues",
+    genero: "masculino", // Tente mudar para 'feminino' depois para testar
+  };
+
+  // --- A REGRA DE GÊNERO ---
+  // Se gênero for 'feminino', escreve "bem-vinda". Senão, "bem-vindo".
+  const fraseBoasVindas = usuarioLogado.genero === 'feminino' 
+    ? "Seja bem-vinda de volta." 
+    : "Seja bem-vindo de volta.";
+
   return (
     <div className="dashboard-layout">
       <Sidebar />
       
       <main className="main-content">
-        {/* Passando Título e Subtítulo */}
+        {/* Passamos o nome e a frase calculada para o Header */}
         <Header 
-          title="Dashboard Principal" 
-          subtitle="Bem-vindo de volta, Thiago!" 
+          title={usuarioLogado.nome} 
+          subtitle={fraseBoasVindas} 
         />
 
         <div className="content-scrollable">
-           {/* Grid de Cards */}
            <div className="cards-grid">
               <Card titulo="Imóveis Cadastrados" valor="124" icone="🏠" />
               <Card titulo="Clientes Ativos" valor="8" icone="👥" />
               <Card titulo="Faturamento Mensal" valor="R$ 12.500" icone="💰" />
            </div>
 
-           {/* A Tabela já contém o título dentro dela agora */}
            <div className="table-section">
               <Table />
            </div>
@@ -37,4 +47,5 @@ const Dashboard = () => {
     </div>
   );
 }
+
 export default Dashboard;

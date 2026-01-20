@@ -1,55 +1,85 @@
-// Layout Principal (Pai de todos)
+// Layout Principal (Tela Travada - Sem rolagem no corpo)
 .dashboard-layout {
-  display: flex;       // Habilita o modo "Lado a Lado"
-  width: 100%;         // Largura total
-  min-height: 100vh;   // Garante que ocupe a altura inteira da tela
-  background-color: var(--bg-color); // Cor de fundo cinza suave
+  display: flex;
+  width: 100%;
+  height: 100vh;      // Altura exata da tela
+  overflow: hidden;   // Remove a barra de rolagem geral
+  background-color: var(--bg-color);
 
   // Área Principal (Direita)
   .main-content {
-    flex: 1;           // Ocupa todo o espaço restante (desconta os 250px da Sidebar)
-    display: flex;     // Habilita Flexbox vertical
-    flex-direction: column; // Organiza itens em coluna: Header -> Conteúdo -> Footer
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; // Garante altura total
     
-    // Área de conteúdo central (entre o Header e o Footer)
+    // Header e Footer têm altura natural e ficam fixos
+    
+    // Wrapper do Conteúdo (Cards + Tabela)
     .content-scrollable {
-      padding: 30px; // Espaçamento interno para não grudar nas bordas
-      flex: 1;       // Empurra o footer para baixo se tiver pouco conteúdo
-      
-      // GRID DE CARDS
+      flex: 1;           // Ocupa o espaço entre Header e Footer
+      display: flex;     // Flexbox para organizar Cards e Tabela
+      flex-direction: column;
+      padding: 30px;
+      padding-bottom: 0; // Remove padding inferior para a rolagem ir até o fim
+      overflow: hidden;  // Não rola o wrapper todo, vamos rolar só a tabela
+
+      // Cards fixos no topo (não rolam)
       .cards-grid {
-        display: grid; // Sistema de Grid (Tabela invisível)
-        
-        // Mágica do Grid Responsivo:
-        // Cria colunas automaticamente. 
-        // "minmax(240px, 1fr)": Cada coluna tem no mínimo 240px. 
-        // Se couber mais, elas crescem (1fr).
+        flex-shrink: 0; // Impede que os cards encolham
+        display: grid;
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
-        
-        gap: 20px; // Espaço entre os cards
-        margin-bottom: 30px; // Espaço abaixo dos cards
+        gap: 20px;
+        margin-bottom: 20px;
       }
 
-      // Estilo do Título da Tabela
+      // AQUI É A ROLAGEM: Apenas a seção da tabela rola
       .table-section {
-        h3 {
-          margin-bottom: 15px;
-          color: var(--dark-blue);
-          font-size: 18px;
-          font-weight: 700;
+        flex: 1;           // Ocupa todo o espaço restante até o footer
+        overflow-y: auto;  // Cria a barra de rolagem APENAS AQUI
+        min-height: 0;     // Correção para scroll em flexbox
+        
+        // Estilizando a barra de rolagem para ficar elegante
+        &::-webkit-scrollbar {
+          width: 6px;
         }
+        &::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: #ccc;
+          border-radius: 4px;
+        }
+
+        // Garante espaço após o último item da tabela
+        padding-bottom: 20px; 
       }
     }
   }
 }
 
-// Responsividade para Celulares (Opcional, mas bom ter)
+// Responsividade Mobile
 @media (max-width: 768px) {
   .dashboard-layout {
-    flex-direction: column; // No celular, vira tudo uma coluna só
+    flex-direction: column;
+    height: auto;
+    overflow: auto; // No celular volta ao normal
+  }
+  
+  .main-content {
+    height: auto;
+    
+    .content-scrollable {
+      padding: 15px;
+      overflow: visible;
+      
+      .table-section {
+        overflow-y: visible;
+      }
+    }
   }
   
   .cards-grid {
-    grid-template-columns: 1fr; // Cards ocupam largura total no celular
+    grid-template-columns: 1fr;
   }
 }

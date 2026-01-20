@@ -1,172 +1,142 @@
-// Container Principal (ocupa toda a tela)
 .login-container {
-  width: 100%;
-  height: 100vh; // 100% da altura da viewport (tela visível)
-  display: flex; // Habilita o Flexbox
-  flex-direction: column; // Itens um embaixo do outro
-  justify-content: center; // Centraliza verticalmente
-  align-items: center; // Centraliza horizontalmente
-  background-color: var(--bg-color); // Cor do index.scss
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color);
   padding: 20px;
 
-  // O Cartão Branco
   .login-card {
     background-color: var(--white);
-    width: 100%;
-    max-width: 420px; // Largura máxima para não ficar esticado em monitores grandes
     padding: 40px;
-    border-radius: 20px; // Bordas arredondadas
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05); // Sombra suave
-    
-    // Área da Marca
-    .brand-area {
-      text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    width: 100%;
+    max-width: 400px; // Largura ideal para login
+    text-align: center;
+
+    // --- CORREÇÃO DA LOGO GIGANTE AQUI ---
+    .logo-area {
       margin-bottom: 30px;
-
-      .logo {
-        height: 60px; // Altura definida (60px conforme pedido)
-        width: auto;  // Largura automática para não distorcer
-        margin-bottom: 20px;
+      img { 
+        height: 60px; // Trava a altura para não estourar
+        width: auto;  // Largura ajusta sozinha
+        object-fit: contain;
       }
+    }
+    // -------------------------------------
 
-      h2 {
-        color: var(--dark-blue);
-        font-size: 24px;
-        font-weight: 700; // Negrito forte
-        margin-bottom: 8px;
+    .header-text {
+      margin-bottom: 30px;
+      h2 { 
+        color: var(--dark-blue); 
+        font-size: 24px; 
+        font-weight: 700; 
+        margin-bottom: 5px; 
       }
-
-      p {
-        color: var(--gray-text);
-        font-size: 14px;
+      p { 
+        color: var(--gray-text); 
+        font-size: 14px; 
       }
     }
 
     form {
+      text-align: left;
+
       .input-group {
         margin-bottom: 20px;
+        
+        // Linha do Label + Link Esqueceu Senha
+        .label-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
 
-        label {
-          display: block; // Ocupa a linha inteira
-          color: var(--dark-blue);
-          font-size: 14px;
-          font-weight: 500;
-          margin-bottom: 8px;
+            label {
+                font-size: 14px;
+                font-weight: 600;
+                color: var(--dark-blue);
+            }
         }
 
         input {
           width: 100%;
-          padding: 12px 16px;
-          border: 1px solid #E0E5F2; // Borda cinza padrão
-          border-radius: 10px;
-          font-size: 14px;
+          padding: 12px 15px;
+          border: 1px solid #E0E5F2;
+          border-radius: 12px;
+          font-size: 15px;
+          outline: none;
+          transition: all 0.2s;
           color: var(--dark-blue);
-          outline: none; // Remove borda azul nativa do navegador
-          transition: border-color 0.2s; // Animação suave na troca de cor
 
-          &::placeholder {
-            color: var(--gray-text);
-          }
-
-          // Quando clica no campo
-          &:focus {
-            border-color: var(--primary-blue); // Borda fica azul
+          &::placeholder { color: #A3AED0; }
+          &:focus { 
+            border-color: var(--primary-blue); 
+            box-shadow: 0 0 0 3px rgba(67, 24, 255, 0.1); 
           }
         }
 
-        // --- ESTADOS DE ERRO ---
-        // Aplicado quando o React adiciona a classe .has-error
-        &.has-error {
-          input {
-            border-color: var(--danger); // Borda vermelha
-            background-color: #FFF5F5;   // Fundo levemente avermelhado
-          }
-          label {
-            color: var(--danger); // Texto do label vermelho
-          }
+        // Link de "Esqueceu a senha?" posicionado corretamente
+        .forgot-password-link {
+            text-align: right;
+            margin-top: 8px;
+            font-size: 12px;
+            
+            a {
+                color: var(--primary-blue);
+                font-weight: 600;
+                &:hover { text-decoration: underline; }
+            }
         }
 
-        // Mensagem de erro abaixo do input
-        .error-message {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          margin-top: 6px;
-          color: var(--danger);
-          font-size: 12px;
-          font-weight: 500;
-          animation: slideDown 0.2s ease-out; // Pequena animação de entrada
-        }
-      }
-
-      .actions {
-        display: flex;
-        justify-content: flex-end; // Empurra o conteúdo para a direita
-        margin-bottom: 25px;
-
-        .forgot-link {
-          color: var(--primary-blue);
-          font-size: 13px;
-          font-weight: 500;
-          
-          &:hover {
-            color: var(--primary-hover);
-            text-decoration: underline;
+        &.error {
+          input { border-color: var(--danger); }
+          .msg-error {
+            color: var(--danger);
+            font-size: 12px;
+            margin-top: 5px;
+            display: block;
+            &::before { content: '⚠️ '; }
           }
         }
       }
 
-      // Estilo do Botão Principal
       .btn-primary {
         width: 100%;
-        padding: 14px;
         background-color: var(--primary-blue);
-        color: var(--white);
-        border-radius: 10px;
-        font-weight: 500;
-        font-size: 15px;
-        transition: all 0.2s;
+        color: white;
+        padding: 15px;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 16px;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: transform 0.2s, background-color 0.2s;
 
-        // Efeito ao passar o mouse
         &:hover {
           background-color: var(--primary-hover);
-          transform: translateY(-1px); // Sobe 1 pixel
-          box-shadow: 0 4px 12px rgba(67, 24, 255, 0.2); // Sombra colorida
-        }
-      }
-
-      .register-area {
-        margin-top: 20px;
-        text-align: center;
-        
-        p {
-          font-size: 14px;
-          color: var(--dark-blue);
+          transform: translateY(-2px);
         }
 
-        a {
-          color: var(--primary-blue);
-          font-weight: 700;
-          margin-left: 5px;
-          
-          &:hover {
-            color: var(--primary-hover);
-            text-decoration: underline;
-          }
+        &:disabled {
+            background-color: #A3AED0;
+            cursor: not-allowed;
+            transform: none;
         }
       }
     }
-  }
 
-  .footer-credits {
-    margin-top: 20px;
-    font-size: 12px;
-    color: var(--gray-text);
+    .footer-links {
+      margin-top: 30px;
+      font-size: 14px;
+      color: var(--gray-text);
+      
+      a {
+        color: var(--primary-blue);
+        font-weight: 700;
+        margin-left: 5px;
+        &:hover { text-decoration: underline; }
+      }
+    }
   }
-}
-
-// Definição da Animação (Keyframes)
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-5px); } // Começa invisível e um pouco acima
-  to { opacity: 1; transform: translateY(0); }      // Termina visível na posição original
 }

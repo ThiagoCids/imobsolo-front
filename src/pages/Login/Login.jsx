@@ -1,140 +1,113 @@
 import React, { useState } from 'react';
-// Hooks de navegação do React Router
+// Importamos o Link para ir ao cadastro e useNavigate para ir ao Dashboard
 import { Link, useNavigate } from 'react-router-dom';
-// Ícone de alerta para erros
-import { FiAlertCircle } from 'react-icons/fi';
-// Estilos e Logo
+import logo from '../../assets/logo-imobsolo.png';
 import './Login.scss';
-import logo from '../../assets/logo-imobsolo.png'; 
 
 const Login = () => {
-  // Hook para redirecionar o usuário (ex: ir para o dashboard)
-  const navigate = useNavigate();
-  
-  // ESTADOS (Memória do Componente)
-  // Guardam o que o usuário digita
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // Inicializa o GPS
 
-  // Estados para as mensagens de erro (inicialmente vazios)
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  // Estado dos dados
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
 
-  // Função auxiliar: Verifica se o texto tem formato de e-mail (tem @ e ponto)
-  const isEmailValid = (email) => {
-    return /\S+@\S+\.\S+/.test(email);
+  // Estado dos erros
+  const [errors, setErrors] = useState({});
+  // Estado para mostrar que está "carregando"
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setErrors({ ...errors, [e.target.name]: '' });
   };
 
-  // FUNÇÃO DE LOGIN (Disparada ao clicar em Entrar)
-  const handleLogin = (e) => {
-    e.preventDefault(); // Impede a página de recarregar (comportamento padrão do HTML)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = {};
 
-    // 1. Limpa erros antigos para fazer uma nova verificação limpa
-    setEmailError('');
-    setPasswordError('');
-    let isValid = true; // Variável de controle (flag)
-
-    // 2. Validação do Campo E-mail
-    if (!email) {
-      setEmailError('Por favor, digite seu e-mail.');
-      isValid = false;
-    } else if (!isEmailValid(email)) {
-      setEmailError('O e-mail digitado é inválido.');
-      isValid = false;
+    // 1. Validação simples
+    if (!formData.email) {
+      newErrors.email = "Digite seu e-mail";
+    } else if (!formData.email.includes('@')) {
+      newErrors.email = "E-mail inválido";
     }
 
-    // 3. Validação do Campo Senha
-    if (!password) {
-      setPasswordError('Digite sua senha para continuar.');
-      isValid = false;
-    } else if (password.length < 6) {
-      setPasswordError('A senha deve ter no mínimo 6 caracteres.');
-      isValid = false;
+    if (!formData.password) {
+      newErrors.password = "Digite sua senha";
     }
 
-    // 4. Se passou por todas as verificações (isValid continua true)
-    if (isValid) {
-      console.log("Login autorizado:", email);
-      navigate('/dashboard'); // Manda para a próxima tela
+    setErrors(newErrors);
+
+    // 2. Se não tem erros, faz o Login!
+    if (Object.keys(newErrors).length === 0) {
+      setIsLoading(true); // Ativa o spinner no botão
+
+      // Simula uma espera de 1.5 segundos (como se fosse no banco de dados)
+      setTimeout(() => {
+        // AQUI ESTÁ A MÁGICA: Redireciona para o Dashboard
+        navigate('/dashboard'); 
+      }, 1500);
     }
   };
 
   return (
     <div className="login-container">
       <div className="login-card">
-        
-        {/* Cabeçalho com Logo */}
-        <div className="brand-area">
-          <img src={logo} alt="ImobSolo Logo" className="logo" />
+        <div className="logo-area">
+          <img src={logo} alt="ImobSolo" />
+        </div>
+
+        <div className="header-text">
           <h2>Bem-vindo de volta</h2>
           <p>Insira seus dados para acessar o ImobSolo.</p>
         </div>
 
-        {/* Formulário de Login */}
-        {/* noValidate: Desliga os balões de erro nativos do navegador */}
-        <form onSubmit={handleLogin} noValidate>
-          
-          {/* GRUPO: EMAIL */}
-          {/* Adiciona classe CSS 'has-error' se houver erro neste campo */}
-          <div className={`input-group ${emailError ? 'has-error' : ''}`}>
-            <label htmlFor="email">E-mail</label>
+        <form onSubmit={handleSubmit} noValidate>
+          {/* Campo E-mail */}
+          <div className={`input-group ${errors.email ? 'error' : ''}`}>
+            <label>E-mail</label>
             <input 
               type="email" 
-              id="email" 
-              placeholder="exemplo@imobsolo.com" 
-              value={email}
-              // onChange: Atualiza o estado quando o usuário digita
-              onChange={(e) => {
-                setEmail(e.target.value);
-                if(emailError) setEmailError(''); // Limpa o erro assim que o usuário começa a corrigir
-              }}
+              name="email" 
+              placeholder="exemplo@imobsolo.com"
+              value={formData.email}
+              onChange={handleChange}
             />
-            {/* Renderização Condicional: Só mostra a mensagem se emailError existir */}
-            {emailError && (
-              <span className="error-message">
-                <FiAlertCircle /> {emailError}
-              </span>
-            )}
+            {errors.email && <span className="msg-error">{errors.email}</span>}
           </div>
 
-          {/* GRUPO: SENHA */}
-          <div className={`input-group ${passwordError ? 'has-error' : ''}`}>
-            <label htmlFor="password">Senha</label>
+          {/* Campo Senha */}
+          <div className={`input-group ${errors.password ? 'error' : ''}`}>
+            <div className="label-row">
+              <label>Senha</label>
+            </div>
             <input 
               type="password" 
-              id="password" 
-              placeholder="********" 
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                if(passwordError) setPasswordError('');
-              }}
+              name="password" 
+              placeholder="********"
+              value={formData.password}
+              onChange={handleChange}
             />
-            {passwordError && (
-              <span className="error-message">
-                <FiAlertCircle /> {passwordError}
-              </span>
-            )}
+            {/* Link de Esqueci Senha alinhado à direita */}
+            <div className="forgot-password-link">
+               <Link to="/recuperar-senha">Esqueceu a senha?</Link>
+            </div>
+            
+            {errors.password && <span className="msg-error">{errors.password}</span>}
           </div>
 
-          {/* Link de Esqueci Senha */}
-          <div className="actions">
-            <Link to="/recuperar-senha" class="forgot-link">Esqueceu a senha?</Link>
-          </div>
-
-          {/* Botão Principal */}
-          <button type="submit" className="btn-primary">Entrar</button>
-
-          {/* Rodapé do Form: Cadastro */}
-          <div className="register-area">
-            <p>Não tem uma conta? <Link to="/cadastro">Cadastre-se</Link></p>
-          </div>
+          {/* Botão Entrar com efeito de Carregamento */}
+          <button type="submit" className="btn-primary" disabled={isLoading}>
+            {isLoading ? "Entrando..." : "Entrar"}
+          </button>
         </form>
-      </div>
-      
-      {/* Rodapé da Página */}
-      <div className="footer-credits">
-        © 2024 ImobSolo CRM. Todos os direitos reservados.
+
+        <div className="footer-links">
+          <span>Não tem uma conta? </span>
+          <Link to="/cadastro">Cadastre-se</Link>
+        </div>
       </div>
     </div>
   );
