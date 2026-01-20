@@ -1,26 +1,27 @@
-import React from 'react'
-import './Sidebar.scss'
-// IMPORTANTE: Agora importamos a imagem da pasta assets (voltamos 2 pastas com ../..)
-import logo from '../assets/logo-imobsolo.png'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Sidebar.scss';
+
 const Sidebar = () => {
   return (
-    <div className="sidebar">
-      {/* Usamos a variável {logo} aqui dentro */}
-      <div className="logo">
-        <img src={logo} alt="Logo ImobSolo" />
+    <aside className="sidebar">
+      {/* Logo com ícone e texto */}
+      <div className="logo-area">
+        <span className="logo-icon">🏠</span>
+        <h2>ImobSolo</h2>
       </div>
 
       <nav>
         <ul>
-          <li>Dashboard</li>
-          <li>Meus Imóveis</li>
-          <li>Clientes</li>
-          <li>Matches</li>
-          <li>Configurações</li>
+          <li><Link to="/dashboard">Dashboard</Link></li>
+          <li><Link to="/imoveis">Meus Imóveis</Link></li>
+          <li><Link to="/leads">Clientes</Link></li>
+          {/* Novo item que vi na sua imagem */}
+          <li><Link to="/matches">Matches</Link></li>
+          <li><Link to="/configuracoes">Configurações</Link></li>
         </ul>
       </nav>
-    </div>
-  )
-}
-
-export default Sidebar
+    </aside>
+  );
+};
+export default Sidebar;

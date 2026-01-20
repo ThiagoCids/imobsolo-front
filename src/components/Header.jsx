@@ -1,26 +1,24 @@
-import React from 'react'
-import './Header.scss'
+import React from 'react';
+import './Header.scss';
 
-const Header = () => {
+const Header = ({ title, subtitle }) => {
   return (
-    <header className="header">
-      {/* Lado Esquerdo: Título da Página */}
-      <div className="header-title">
-        <h1>Dashboard Principal</h1>
-        <p>Bem-vindo de volta, Thiago!</p>
+    <header className="top-header">
+      {/* Lado Esquerdo: Títulos */}
+      <div className="page-titles">
+        <h2>{title}</h2>
+        <p>{subtitle}</p>
       </div>
 
-      {/* Lado Direito: Card do Perfil */}
-      <div className="header-profile">
-        <div className="profile-info">
+      {/* Lado Direito: Pílula de Perfil */}
+      <div className="profile-pill">
+        <div className="info">
           <strong>Thiago Henrique Domingues</strong>
           <span>Corretor & Dev</span>
         </div>
-        {/* Placeholder de foto (um círculo cinza por enquanto se não tiver imagem) */}
-        <img src="https://ui-avatars.com/api/?name=Thiago+Henrique+Domingues&background=4318FF&color=fff" alt="Perfil" />
+        <div className="avatar">TD</div>
       </div>
     </header>
-  )
-}
-
-export default Header
+  );
+};
+export default Header;

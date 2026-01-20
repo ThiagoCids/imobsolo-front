@@ -1,29 +1,50 @@
-/* src/index.scss */
+/* IMPORTAÇÃO DE FONTE
+  Traz a fonte 'DM Sans' direto do Google Fonts para usar no projeto todo.
+*/
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 
-/* Definindo as variáveis de cores do ImobSolo */
+/* VARIÁVEIS GLOBAIS (:root)
+  Aqui definimos as cores "mães" do projeto.
+  Se um dia você quiser mudar o azul do site inteiro, muda só aqui!
+  Usamos variáveis CSS nativas (--nome) para evitar erros de compilação do SASS.
+*/
 :root {
-  --cor-fundo: #F4F7FE;       /* Aquele cinza azulado moderno de dashboards */
-  --cor-primaria: #4318FF;    /* O Azul vibrante do nosso logo */
-  --cor-texto-escuro: #2B3674;/* Azul marinho para títulos */
-  --cor-texto-cinza: #A3AED0; /* Cinza para textos secundários */
-  --cor-branca: #FFFFFF;
+  --primary-blue: #4318FF;  /* Azul principal (botões, destaques) */
+  --primary-hover: #3311CC; /* Azul mais escuro (quando passa o mouse) */
+  --dark-blue: #2B3674;     /* Azul escuro (títulos, textos fortes) */
+  --gray-text: #A3AED0;     /* Cinza (textos secundários, placeholders) */
+  --bg-color: #F4F7FE;      /* Cor de fundo da página (cinza bem clarinho) */
+  --white: #FFFFFF;         /* Branco puro */
+  --danger: #FF5B5B;        /* Vermelho (mensagens de erro) */
+  --success: #05CD99;       /* Verde (mensagens de sucesso) */
 }
 
-/* Resetando as margens padrão do navegador */
+/* RESET GLOBAL (*)
+  O navegador vem com estilos padrão (margens, paddings) que atrapalham.
+  O asterisco (*) seleciona TODOS os elementos e zera tudo para começarmos limpo.
+*/
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Garante que o tamanho do elemento inclua a borda e o padding */
+  font-family: 'DM Sans', sans-serif; /* Define a fonte padrão */
 }
 
+/* Estilos do Corpo da Página */
 body {
-  background-color: var(--cor-fundo);
-  font-family: 'DM Sans', sans-serif; /* Vamos usar uma fonte moderna depois */
-  color: var(--cor-texto-escuro);
-  -webkit-font-smoothing: antialiased;
+  background-color: var(--bg-color); /* Usa a cor de fundo definida lá em cima */
+  -webkit-font-smoothing: antialiased; /* Deixa a fonte mais nítida no Mac/iPhone */
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: var(--cor-texto-escuro);
-  font-weight: 700;
+/* Reset para Botões */
+button {
+  cursor: pointer; /* Mãozinha ao passar o mouse */
+  border: none;    /* Remove a borda feia padrão */
+  font-family: inherit; /* Herda a fonte da página */
+}
+
+/* Reset para Links */
+a {
+  text-decoration: none; /* Remove o sublinhado padrão dos links */
+  color: inherit; /* Herda a cor do texto pai, não fica aquele azul roxo padrão */
 }

@@ -1,40 +1,52 @@
-/* src/components/Card.scss */
-.card {
-  background-color: var(--cor-branca);
-  padding: 20px;
-  border-radius: 20px;
+.dashboard-card {
+  background: var(--white); // Fundo branco vindo das variáveis globais
+  padding: 20px;            // Espaço interno para não ficar apertado
+  border-radius: 16px;      // Bordas bem arredondadas (moderno)
+  
+  // Flexbox para alinhar Ícone e Texto lado a lado
   display: flex;
-  align-items: center;
-  gap: 18px;
-  box-shadow: 0px 18px 40px rgba(112, 144, 176, 0.12);
+  align-items: center;      // Centraliza verticalmente
+  gap: 15px;                // Espaço entre o ícone e o texto
+  
+  // Sombra bem suave para dar profundidade (efeito 3D leve)
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  
+  // Transição para animações (suaviza mudanças)
   transition: transform 0.2s ease;
 
+  // Efeito ao passar o mouse (Hover)
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px); // O card "flutua" um pouco para cima
   }
 
-  .card-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background-color: #F4F7FE;
+  // A bolinha onde fica o ícone
+  .icon-box {
+    width: 50px;
+    height: 50px;
+    background: var(--bg-color); // Fundo cinza claro
+    border-radius: 50%;          // 50% transforma o quadrado em círculo perfeito
+    
+    // Centralizar o emoji dentro da bolinha
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 28px;
-    color: var(--cor-primaria);
+    justify-content: center;
+    
+    font-size: 24px; // Tamanho do ícone
   }
 
-  .card-info {
-    h4 {
+  .data-box {
+    span {
+      display: block; // Garante que fique em linha própria
+      color: var(--gray-text);
       font-size: 14px;
-      color: var(--cor-texto-cinza);
       margin-bottom: 5px;
     }
+
     h3 {
-      font-size: 24px;
-      color: var(--cor-texto-escuro);
+      color: var(--dark-blue);
+      font-size: 22px; // Valor grande para leitura rápida
       font-weight: 700;
+      margin: 0; // Remove margens padrão do navegador
     }
   }
 }

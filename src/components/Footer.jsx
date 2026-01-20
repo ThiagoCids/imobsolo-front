@@ -1,14 +1,13 @@
-import React from 'react'
-import './Footer.scss'
+import React from 'react';
+import './Footer.scss';
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <p>
-        © 2026 <span>ImobSolo</span>. Desenvolvido por Thiago Henrique Domingues.
-      </p>
+    // Tag semântica <footer> para rodapés
+    <footer className="main-footer">
+      <p>© 2026 ImobSolo - Gestão Imobiliária Inteligente</p>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

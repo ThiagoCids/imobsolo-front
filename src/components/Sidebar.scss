@@ -1,44 +1,44 @@
-/* src/components/Sidebar.scss */
-
 .sidebar {
-  width: 250px;            /* Largura fixa da barra */
-  height: 100vh;           /* Altura total da tela */
-  background-color: var(--cor-branca);
-  position: fixed;         /* Preso na esquerda */
-  left: 0;
-  top: 0;
-  padding: 30px;
+  width: 250px;
+  background-color: var(--white); // Fundo branco
+  height: 100vh;
+  padding: 30px 20px;
+  border-right: 1px solid #F0F0F0; // Borda bem suava
   display: flex;
   flex-direction: column;
-  border-right: 1px solid rgba(0,0,0,0.05); /* Borda sutil */
 
-  /* --- Bloco do Logo (Aninhado dentro da sidebar) --- */
-  .logo {
+  .logo-area {
     display: flex;
-    justify-content: center; /* Centraliza a imagem */
-    margin-bottom: 50px;     /* Empurra o menu para baixo */
-    
-    img {
-      width: 140px;          /* Controla o tamanho do logo aqui */
-      height: auto;          /* Mantém a proporção correta */
-    }
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 50px;
+    padding-left: 10px;
+
+    .logo-icon { font-size: 24px; }
+    h2 { color: var(--primary-blue); font-weight: 800; font-size: 20px; }
   }
 
-  /* --- Bloco do Menu (Também aninhado dentro da sidebar) --- */
   nav ul {
-    list-style: none; /* Remove as bolinhas da lista */
+    list-style: none;
     
     li {
-      padding: 15px 0;
-      color: var(--cor-texto-cinza);
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.3s;
+      margin-bottom: 10px;
+      
+      a {
+        display: block;
+        padding: 12px 20px;
+        border-radius: 12px; // Cantos arredondados
+        color: var(--gray-text); // Cinza padrão
+        font-weight: 500;
+        font-size: 15px;
+        text-decoration: none;
+        transition: all 0.2s;
 
-      /* Efeito ao passar o mouse (Hover) */
-      &:hover {
-        color: var(--cor-primaria);
-        font-weight: bold;
+        &:hover {
+          color: var(--primary-blue);
+          background-color: transparent; // Na imagem parece não ter fundo no hover, só cor
+          font-weight: 700; // Fica negrito no hover
+        }
       }
     }
   }

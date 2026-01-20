@@ -1,52 +1,47 @@
-/* src/components/Header.scss */
-
-.header {
+.top-header {
+  // Removi o fundo branco para ficar "transparente" no fundo cinza da página
+  background-color: transparent; 
+  padding: 0 0 30px 0; // Espaço embaixo apenas
   display: flex;
-  justify-content: space-between; /* Texto na esquerda, perfil na direita */
+  justify-content: space-between;
   align-items: center;
-  background-color: transparent; /* Vamos deixar transparente para ficar moderno */
-  margin-bottom: 30px;
-  
-  .header-title {
-    h1 {
+
+  .page-titles {
+    h2 {
       font-size: 24px;
-      color: var(--cor-texto-escuro);
+      color: var(--dark-blue);
+      font-weight: 700;
+      margin-bottom: 5px;
     }
     p {
-      color: var(--cor-texto-cinza);
+      color: var(--gray-text);
       font-size: 14px;
-      margin-top: 5px;
     }
   }
 
-  .header-profile {
+  // Estilo "Pílula" branca flutuante
+  .profile-pill {
+    background-color: var(--white);
+    padding: 10px 20px;
+    border-radius: 50px; // Bordas totalmente redondas
     display: flex;
     align-items: center;
     gap: 15px;
-    background-color: var(--cor-branca);
-    padding: 10px 20px;
-    border-radius: 30px; /* Borda bem redonda (Pill shape) */
-    box-shadow: 0px 5px 14px rgba(0, 0, 0, 0.05); /* Sombra leve */
-    
-    img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%; /* Foto redonda */
-      object-fit: cover;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02); // Sombra leve
+
+    .info {
+      text-align: right;
+      strong { display: block; color: var(--dark-blue); font-size: 14px; }
+      span { color: var(--gray-text); font-size: 11px; }
     }
 
-    .profile-info {
-      text-align: right;
-      
-      strong {
-        display: block;
-        font-size: 14px;
-        color: var(--cor-texto-escuro);
-      }
-      span {
-        font-size: 12px;
-        color: var(--cor-texto-cinza);
-      }
+    .avatar {
+      width: 40px; height: 40px;
+      background-color: var(--primary-blue);
+      color: white;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: bold;
     }
   }
 }

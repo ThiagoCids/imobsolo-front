@@ -1,45 +1,47 @@
-/* src/components/Table.scss */
+.custom-table-container {
+  background: var(--white);
+  border-radius: 20px; // Mais arredondado
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
 
-.table-container {
-  background-color: var(--cor-branca);
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0px 18px 40px rgba(112, 144, 176, 0.12);
-
-  h3 {
+  .table-header {
     margin-bottom: 20px;
-    font-size: 20px;
-    color: var(--cor-texto-escuro);
+    h3 { color: var(--dark-blue); font-size: 18px; font-weight: 700; }
   }
-
+  
   table {
     width: 100%;
-    border-collapse: collapse; /* Tira os espaços entre as células */
-
+    border-collapse: collapse;
+    
     th {
       text-align: left;
-      color: var(--cor-texto-cinza);
-      font-size: 14px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid #E9EDF7;
-    }
-
-    td {
+      color: var(--gray-text);
       padding: 15px 0;
-      color: var(--cor-texto-escuro);
       font-size: 14px;
-      font-weight: 600;
-      border-bottom: 1px solid #E9EDF7;
-
-      /* Estilo para a coluna de Status */
-      &.status-novo { color: var(--cor-primaria); }
-      &.status-negociacao { color: #FFB547; }
-      &.status-vendido { color: #05CD99; }
+      font-weight: 500;
+      border-bottom: 1px solid #F0F0F0;
     }
     
-    /* Remove a borda da última linha para ficar bonito */
-    tr:last-child td {
-      border-bottom: none;
+    td {
+      padding: 20px 0;
+      color: var(--dark-blue);
+      font-size: 14px;
+      font-weight: 500;
+      border-bottom: 1px solid #F8F9FC;
+      
+      &.bold-text {
+        font-weight: 700; // Nome do cliente em negrito
+      }
+    }
+    
+    // Status Personalizados iguais à imagem
+    .status {
+      font-weight: 700;
+      font-size: 14px;
+      
+      &.novo { color: var(--primary-blue); } // Azul/Roxo
+      &.negociacao { color: #FFB547; }       // Laranja
+      &.vendido { color: #05CD99; }          // Verde
     }
   }
 }

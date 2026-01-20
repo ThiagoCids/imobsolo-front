@@ -1,16 +1,9 @@
-/* src/components/Footer.scss */
-.footer {
-  text-align: center;
-  padding: 30px 0;
-  margin-top: auto; /* Isso ajuda a empurrar o footer para baixo se tiver pouco conteúdo */
-  
-  p {
-    color: var(--cor-texto-cinza);
-    font-size: 12px;
-    
-    span {
-      color: var(--cor-primaria);
-      font-weight: bold;
-    }
-  }
+.main-footer {
+  text-align: center;       // Centraliza o texto
+  padding: 20px;            // Espaço interno
+  color: var(--gray-text);  // Cor cinza suave
+  font-size: 12px;          // Texto pequeno e discreto
+  border-top: 1px solid #E0E5F2; // Linha fina separando do conteúdo
+  background-color: var(--white);
+  margin-top: auto;         // Garante que fique no final do container flex
 }
