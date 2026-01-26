@@ -1,17 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
 
 :root {
+  /* --- CORES PRIMÁRIAS --- */
   --primary-blue: #4318FF;
   --primary-hover: #3311CC;
+  --primary-light: #F0EEFF;
+  --primary-gradient: linear-gradient(135deg, #4318FF 0%, #9052FF 100%);
+  
+  /* --- CORES SECUNDÁRIAS --- */
   --dark-blue: #2B3674;
+  --light-blue: #8BA2D0;
+  --gray-text: #707EAE;
+  --gray-light: #A3AED0;
+  --gray-lighter: #E0E5F2;
+  --gray-bg: #F4F7FE;
   
-  /* CORRIGIDO: Cinza mais escuro para melhor leitura */
-  --gray-text: #707EAE; 
+  /* --- CORES DE STATUS --- */
+  --success: #05CD99;
+  --warning: #FFA500;
+  --danger: #FF5B5B;
+  --info: #4318FF;
   
+  /* --- CORES DE FUNDO --- */
   --bg-color: #F4F7FE;
   --white: #FFFFFF;
-  --danger: #FF5B5B;
-  --success: #05CD99;
+  --black: #000000;
+  
+  /* --- SOMBRAS --- */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.15);
+  
+  /* --- ESPAÇAMENTOS --- */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  
+  /* --- TRANSITIONS --- */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.3s ease;
+  
+  /* --- BREAKPOINTS (usando em @media) --- */
+  --mobile: 480px;
+  --tablet: 768px;
+  --desktop: 1024px;
 }
 
 * {
@@ -21,11 +58,101 @@
   font-family: 'DM Sans', sans-serif;
 }
 
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   background-color: var(--bg-color);
   -webkit-font-smoothing: antialiased;
-  color: var(--dark-blue); // Garante cor padrão escura
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--dark-blue);
+  line-height: 1.5;
 }
 
-button { cursor: pointer; border: none; font-family: inherit; }
-a { text-decoration: none; color: inherit; }
+/* --- TYPO --- */
+h1 {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+}
+
+h3 {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* --- ELEMENTOS BÁSICOS --- */
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: var(--transition-base);
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-base);
+}
+
+input, textarea, select {
+  font-family: inherit;
+  transition: var(--transition-base);
+}
+
+/* --- SCROLLBAR --- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-lighter);
+  border-radius: 4px;
+  
+  &:hover {
+    background: var(--light-blue);
+  }
+}

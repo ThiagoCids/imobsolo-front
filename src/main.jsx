@@ -1,39 +1,37 @@
-// --- IMPORTAÇÕES DO REACT ---
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-// Ferramenta de roteamento
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-// Estilos globais
 import './index.scss'
 
-// --- IMPORTAÇÃO DAS PÁGINAS ---
+// Context
+import { AuthProvider } from './context/AuthContext'
+
+// Páginas
 import Login from './pages/Login/Login'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
-import Register from './pages/Register/Register' // <--- IMPORTAÇÃO NOVA
+import Register from './pages/Register/Register'
 import Dashboard from './pages/Dashboard/Dashboard'
 import Properties from './pages/Properties/Properties'
 import Leads from './pages/Leads/Leads'
 import Settings from './pages/Settings/Settings'
 
-// --- CONFIGURAÇÃO DAS ROTAS ---
+// Configuração das rotas
 const router = createBrowserRouter([
   {
-    path: "/",          // Rota Raiz (Login)
-    element: <Login />, 
+    path: "/",
+    element: <Login />,
   },
   {
     path: "/recuperar-senha",
-    element: <ForgotPassword />, 
+    element: <ForgotPassword />,
   },
   {
-    path: "/cadastro",  // Rota de Cadastro
-    element: <Register />, // <--- AQUI CHAMAMOS O ARQUIVO NOVO
+    path: "/cadastro",
+    element: <Register />,
   },
-  
-  // --- ROTAS DO SISTEMA (Área Logada) ---
   {
     path: "/dashboard",
-    element: <Dashboard />, 
+    element: <Dashboard />,
   },
   {
     path: "/imoveis",
@@ -49,9 +47,11 @@ const router = createBrowserRouter([
   },
 ]);
 
-// --- INICIALIZAÇÃO DO APP ---
+// Renderização com AuthProvider envolvendo tudo
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 )

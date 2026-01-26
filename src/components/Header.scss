@@ -1,75 +1,170 @@
 .top-header {
-  background-color: transparent;
-  padding: 30px 30px 35px 30px; 
+  background-color: var(--white);
+  padding: var(--spacing-lg);
   display: flex;
   justify-content: space-between;
-  // align-items center centraliza, mas flex-start alinha no topo. 
-  // Vamos usar center para alinhar com a pílula visualmente.
-  align-items: center; 
+  align-items: center;
+  gap: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--spacing-xl);
+  border-radius: 12px;
+
+  @media (max-width: 768px) {
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 480px) {
+    padding: var(--spacing-md) var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
 
   .page-titles {
     display: flex;
-    flex-direction: column; // Garante um embaixo do outro
+    flex-direction: column;
     justify-content: center;
+    gap: var(--spacing-sm);
+    flex: 1;
 
     h2 {
-      font-size: 30px;
+      margin: 0;
       color: var(--dark-blue);
+      font-size: 28px;
       font-weight: 700;
-      margin: 0; // Remove espaço extra
-      line-height: 1.2; // Altura da linha ajustada
+      line-height: 1.2;
+
+      @media (max-width: 768px) {
+        font-size: 22px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 18px;
+      }
     }
+
     p {
+      margin: 0;
       color: var(--gray-text);
-      font-size: 16px; // Aumentei um pouco para ler melhor
+      font-size: 14px;
       font-weight: 500;
-      margin: 5px 0 0 0; // Pequeno espaço de 5px entre o título e a frase
+      line-height: 1.4;
+
+      @media (max-width: 480px) {
+        font-size: 12px;
+      }
     }
   }
 
-  // (O código da pílula .profile-pill continua o mesmo que te mandei antes, 
-  // pois você disse que gostou, então não vou repetir aqui para economizar espaço, 
-  // mantenha o que já está lá).
-  .profile-pill {
-    background-color: var(--white);
-    padding: 10px 10px 10px 20px;
-    border-radius: 40px; 
+  .profile-section {
     display: flex;
     align-items: center;
-    gap: 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.03);
-    cursor: pointer; 
-    transition: transform 0.2s ease, box-shadow 0.2s ease; 
+    gap: var(--spacing-md);
+
+    @media (max-width: 768px) {
+      gap: var(--spacing-sm);
+    }
+  }
+
+  .profile-pill {
+    background-color: var(--white);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    transition: var(--transition-base);
+    border: 1px solid var(--gray-lighter);
+
+    @media (max-width: 480px) {
+      padding: 8px 12px;
+      gap: 8px;
+    }
 
     &:hover {
-      transform: translateY(-5px); 
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
     }
 
     .info {
       text-align: right;
-      strong { 
-        display: block; 
-        color: var(--dark-blue); 
+      display: flex;
+      flex-direction: column;
+
+      @media (max-width: 480px) {
+        display: none;
+      }
+
+      strong {
+        display: block;
+        color: var(--dark-blue);
         font-size: 14px;
         font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 2px;
       }
-      span { 
-        color: var(--gray-text); 
-        font-size: 12px; 
+
+      span {
+        color: var(--gray-text);
+        font-size: 12px;
         font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
     }
 
     .avatar {
-      width: 45px; height: 45px;
-      background-color: var(--primary-blue);
-      color: white;
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, var(--primary-blue), var(--primary-hover));
+      color: var(--white);
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-weight: 700;
       font-size: 16px;
-      border: 3px solid #EFEFEF;
+      flex-shrink: 0;
+      border: 2px solid var(--gray-lighter);
+      box-shadow: var(--shadow-md);
+
+      @media (max-width: 480px) {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .logout-btn {
+    background: transparent;
+    border: 1px solid var(--gray-lighter);
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--danger);
+    cursor: pointer;
+    transition: var(--transition-base);
+
+    @media (max-width: 480px) {
+      width: 40px;
+      height: 40px;
+    }
+
+    &:hover {
+      background-color: rgba(255, 91, 91, 0.1);
+      border-color: var(--danger);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
     }
   }
 }

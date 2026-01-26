@@ -1,23 +1,28 @@
 import React from 'react';
-// Importa o estilo específico do Card
 import './Card.scss';
 
-// O componente recebe "props" (propriedades) do pai (Dashboard)
-// Desestruturação ({ titulo... }): Extrai apenas o que precisamos das props
-const Card = ({ titulo, valor, icone }) => {
+/**
+ * Card de Dashboard - Exibe métricas principais
+ * @param {Object} props
+ * @param {string} props.titulo - Título do card
+ * @param {string|number} props.valor - Valor principal
+ * @param {JSX.Element} props.icone - Ícone React (ex: <MdHome />)
+ * @param {string} props.tipo - Tipo: 'default', 'success', 'warning', 'danger'
+ * @param {string} props.subtitulo - Texto secundário (opcional)
+ */
+const Card = ({ titulo, valor, icone, tipo = 'default', subtitulo }) => {
   return (
-    <div className="dashboard-card">
-      {/* Lado Esquerdo: O Ícone */}
-      <div className="icon-box">
-        {icone} {/* Renderiza o emoji ou ícone passado */}
+    <div className={`dashboard-card card-${tipo}`}>
+      <div className="card-header">
+        <div className={`icon-box icon-${tipo}`}>
+          {icone}
+        </div>
+        <h3 className="card-title">{titulo}</h3>
       </div>
-      
-      {/* Lado Direito: Os Dados */}
-      <div className="data-box">
-        {/* span para texto pequeno/secundário */}
-        <span>{titulo}</span>
-        {/* h3 para o valor principal (destaque) */}
-        <h3>{valor}</h3>
+
+      <div className="card-content">
+        <p className="card-value">{valor}</p>
+        {subtitulo && <p className="card-subtitle">{subtitulo}</p>}
       </div>
     </div>
   );

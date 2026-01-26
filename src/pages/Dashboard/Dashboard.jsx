@@ -1,4 +1,11 @@
 import React from 'react';
+import { useAuth } from '../../hooks/useAuth';
+import {
+  MdOutlineHomeWork,
+  MdOutlineGroup,
+  MdOutlineAttachMoney,
+  MdOutlineShowChart
+} from 'react-icons/md';
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -7,45 +14,81 @@ import Table from '../../components/Table';
 import './Dashboard.scss';
 
 const Dashboard = () => {
-  // --- SIMULAÇÃO DE DADOS DO USUÁRIO (Vindo do Banco de Dados) ---
-  const usuarioLogado = {
-    nome: "Thiago Henrique Domingues",
-    genero: "masculino", // Tente mudar para 'feminino' depois para testar
-  };
+  const { user } = useAuth();
 
-  // --- A REGRA DE GÊNERO ---
-  // Se gênero for 'feminino', escreve "bem-vinda". Senão, "bem-vindo".
-  const fraseBoasVindas = usuarioLogado.genero === 'feminino' 
-    ? "Seja bem-vinda de volta." 
-    : "Seja bem-vindo de volta.";
+  // Dados do dashboard
+  const dashboardCards = [
+    {
+      titulo: 'Imóveis Cadastrados',
+      valor: '124',
+      icone: <MdOutlineHomeWork />,
+      tipo: 'default',
+      subtitulo: '+8 este mês'
+    },
+    {
+      titulo: 'Clientes Ativos',
+      valor: '8',
+      icone: <MdOutlineGroup />,
+      tipo: 'success',
+      subtitulo: '+2 novos'
+    },
+    {
+      titulo: 'Faturamento Mensal',
+      valor: 'R$ 12.500',
+      icone: <MdOutlineAttachMoney />,
+      tipo: 'warning',
+      subtitulo: '+15% vs. mês anterior'
+    },
+    {
+      titulo: 'Taxa de Conversão',
+      valor: '28%',
+      icone: <MdOutlineShowChart />,
+      tipo: 'danger',
+      subtitulo: '-3% vs. mês anterior'
+    }
+  ];
+
+  // Determinar frase de boas-vindas
+  const fraseBoasVindas = user?.genero === 'feminino'
+    ? 'Seja bem-vinda de volta'
+    : 'Seja bem-vindo de volta';
 
   return (
     <div className="dashboard-layout">
       <Sidebar />
-      
+
       <main className="main-content">
-        {/* Passamos o nome e a frase calculada para o Header */}
-        <Header 
-          title={usuarioLogado.nome} 
-          subtitle={fraseBoasVindas} 
-        />
+        <div className="dashboard-container">
+          <Header
+            title={user?.nome || 'Dashboard'}
+            subtitle={fraseBoasVindas}
+          />
 
-        <div className="content-scrollable">
-           <div className="cards-grid">
-              <Card titulo="Imóveis Cadastrados" valor="124" icone="🏠" />
-              <Card titulo="Clientes Ativos" valor="8" icone="👥" />
-              <Card titulo="Faturamento Mensal" valor="R$ 12.500" icone="💰" />
-           </div>
+          <div className="content-scrollable">
+            <div className="cards-grid">
+              {dashboardCards.map((card, index) => (
+                <Card
+                  key={index}
+                  titulo={card.titulo}
+                  valor={card.valor}
+                  icone={card.icone}
+                  tipo={card.tipo}
+                  subtitulo={card.subtitulo}
+                />
+              ))}
+            </div>
 
-           <div className="table-section">
+            <div className="table-section">
+              <h3 className="section-title">Últimas Transações</h3>
               <Table />
-           </div>
-        </div>
+            </div>
+          </div>
 
-        <Footer />
+          <Footer />
+        </div>
       </main>
     </div>
   );
-}
+};
 
 export default Dashboard;
