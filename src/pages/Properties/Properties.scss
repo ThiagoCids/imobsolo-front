@@ -1,0 +1,120 @@
+.properties-layout {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden; // Impede scroll na página inteira
+  background-color: var(--bg-color);
+
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column; // Organiza os blocos verticalmente
+    height: 100vh; // Garante que ocupe a altura toda
+    
+    // --- 1. BARRA DE AÇÕES (FIXA) ---
+    // Removemos ela do scroll e demos um padding fixo
+    .page-actions-fixed {
+      padding: 0 30px 20px 30px; // Espaçamento lateral e inferior
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      background-color: var(--bg-color); // Mantém a cor de fundo para não ficar transparente
+      z-index: 5; // Garante que fique acima se algo rolar
+
+      .search-group {
+          display: flex;
+          gap: 15px;
+          flex: 1;
+          min-width: 300px;
+
+          .search-input-wrapper {
+              flex: 1;
+              background: var(--white);
+              border-radius: 12px;
+              padding: 12px 20px;
+              display: flex; align-items: center; gap: 12px;
+              box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+              
+              .icon { color: var(--gray-text); font-size: 18px; }
+              input { 
+                  border: none; outline: none; width: 100%; 
+                  font-size: 14px; color: var(--dark-blue); 
+                  &::placeholder { color: #A3AED0; } 
+              }
+          }
+
+          .btn-filter {
+              background: var(--white); border: none; padding: 0 20px;
+              border-radius: 12px; display: flex; align-items: center; gap: 8px;
+              color: var(--dark-blue); font-weight: 600; font-size: 14px;
+              cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+              transition: background 0.2s;
+              &:hover { background-color: #FAFCFE; }
+          }
+      }
+
+      .btn-add-new {
+        background-color: var(--primary-blue); color: white; padding: 12px 25px;
+        border-radius: 12px; font-weight: 700; font-size: 14px;
+        display: flex; align-items: center; gap: 8px; text-decoration: none;
+        transition: transform 0.2s ease; box-shadow: 0 4px 10px rgba(67, 24, 255, 0.2);
+        &:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+      }
+    }
+
+    // --- 2. ÁREA DE ROLAGEM (GRID + FOOTER) ---
+    // Esta div ocupa o resto do espaço e permite scroll
+    .scrollable-area {
+        flex: 1; // Ocupa todo o espaço restante abaixo da barra de ações
+        overflow-y: auto; // Habilita o scroll APENAS aqui
+        padding: 10px 30px 30px 30px; // Padding interno para os cards não cortarem
+
+        // O Grid de Imóveis
+        .properties-grid {
+            display: grid;
+            // Responsividade inteligente: Colunas automáticas (min 320px)
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            padding-bottom: 40px;
+        }
+
+        // Container do Footer para dar um respiro
+        .footer-container {
+            margin-top: 20px;
+        }
+    }
+  }
+  
+  // --- RESPONSIVIDADE (MOBILE) ---
+  @media (max-width: 768px) {
+    .properties-layout { 
+        flex-direction: column; 
+        height: auto; 
+        overflow: visible; // No celular, deixamos rolar a página toda (UX melhor em telas pequenas)
+    }
+    
+    .main-content {
+        height: auto;
+        
+        .page-actions-fixed {
+            padding: 0 20px 20px 20px;
+            flex-direction: column;
+            align-items: stretch;
+            
+            .search-group { 
+                flex-direction: column; min-width: auto;
+                .search-input-wrapper { width: 100%; box-sizing: border-box; }
+                .btn-filter { width: 100%; padding: 12px; justify-content: center; }
+            }
+            .btn-add-new { justify-content: center; margin-top: 10px; }
+        }
+
+        .scrollable-area {
+            overflow: visible; // Remove scroll interno no mobile
+            padding: 10px 20px 20px 20px;
+        }
+    }
+  }
+}
