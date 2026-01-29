@@ -1,0 +1,53 @@
+{
+  "compilerOptions": {
+    /* Versão do JavaScript alvo */
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+
+    /* Modo módulo e resolução */
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    /* Configurações de módulos */
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+
+    /* Configurações JSX para React */
+    "jsx": "react-jsx",
+
+    /* Verificação de tipos rigorosa */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Path mapping para imports mais legíveis */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@features/*": ["src/features/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@types/*": ["src/types/*"],
+      "@config/*": ["src/config/*"],
+      "@utils/*": ["src/utils/*"],
+      "@services/*": ["src/services/*"]
+    }
+  },
+
+  /* Incluir apenas arquivos relevantes */
+  "include": ["src"],
+  
+  /* Excluir node_modules e build */
+  "exclude": ["node_modules", "dist", "build"],
+  
+  /* Compatibilidade com Vite */
+  "compileOnSave": false,
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
